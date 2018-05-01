@@ -4,11 +4,36 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node_modules/pm2/bin/pm2 start package.json --no-daemon",
+    "single": "node_modules/pm2/bin/pm2 start single.json --no-daemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
-  }
+    "bluebird": "^3.5.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.16",
+    "morgan": "^1.9.0",
+    "nanoid": "^1.0.2",
+    "pm2": "^2.10.3",
+    "socket.io": "^2.1.0"
+  },
+  "apps": [
+    {
+      "name": "io-cluster",
+      "script": "index.js",
+      "watch": true,
+      "ignore_watch": [
+        "node_modules",
+        "logs"
+      ],
+      "instances": 4,
+      "exec_mode": "cluster",
+      "merge_logs": true,
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "source_map_support": true,
+      "max_memory_restart": "2G"
+    }
+  ]
 }

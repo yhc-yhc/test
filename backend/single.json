@@ -1,0 +1,17 @@
+{
+	"apps": [{
+		"name": "io-single",
+		"script": "index.js",
+		"watch": true,
+		"ignore_watch": [
+			"node_modules",
+			"logs"
+		],
+		"instances": 1,
+		"exec_mode": "cluster",
+		"merge_logs": true,
+		"log_date_format": "YYYY-MM-DD HH:mm Z",
+		"source_map_support": true,
+		"max_memory_restart": "2G"
+	}]
+}
