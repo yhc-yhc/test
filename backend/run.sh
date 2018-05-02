@@ -6,6 +6,10 @@ docker run -itd \
 --net shangTec --ip 172.11.0.12 \
 -v `pwd`:/src \
 -p 3000:3000 \
+-p 3131:3131 \
+-p 3132:3132 \
+-p 3133:3133 \
+-p 3134:3134 \
 -w /src \
 --name clusterBack \
 node:8.11.1 \

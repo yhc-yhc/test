@@ -8,5 +8,6 @@ docker run \
 -v `pwd`/ngx_log:/usr/local/openresty/nginx/logs \
 -v `pwd`/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro  \
 -v `pwd`/conf:/usr/local/openresty/nginx/conf/conf.d \
--p 80:80 \
+-p 1111:1111 \
+-p 2222:2222 \
 --name ngx -d openresty/openresty
