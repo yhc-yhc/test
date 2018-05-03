@@ -17,16 +17,17 @@ io.on('connection', function(client){
 	count ++
 	console.log('connect: ', count)
   client.on('login', function(data){
-    console.log('login', data)
+    console.log('login', client.request.connection.remoteAddress.replace('::ffff:'), data)
+    client.id = data.id
   });
   client.on('queryNanoId', async data => {
     const doc = await model.findOne({count: data.count})
-  	console.log('queryNanoId', data.count, doc.nanoid)
+  	console.log('queryNanoId', client.id, data.count, doc.nanoid)
     client.emit('resNanoId', doc.nanoid)
   });
   client.on('disconnect', function(){
   	count --
-	console.log('disconnect: ', count)
+	  console.log('disconnect: ', count, client.id)
   });
 })
 

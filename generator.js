@@ -1,3 +1,4 @@
+let i = 0
 module.exports = {
       //可选，在建立连接之前会执行
       beforeConnect: function(client) {},
@@ -5,10 +6,10 @@ module.exports = {
       onConnect: function(client, done) {
             //向服务器发送消息
             //client为客户端的连接实例
-            client.emit('login', {count: parseInt(Math.random()*100)});
-            // client.subscribe('resNanoId', message => {
-            //       console.log(message)
-            // });
+            client.emit('login', {id: ++i });
+            client.on('resNanoId', message => {
+                  console.log(message)
+            });
             //回调函数
             done();
       },
