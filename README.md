@@ -19,5 +19,6 @@ websocket-bench -a 10 -c 1000 -m 1000 -k -g generator.js   http://localhost:1111
 
 
 ```
-nginx的ip_hash是基于ip的前三段进行计算的，也就是说ip只有D段不同的两台客户端一定会连接到同一台服务器上，这点测试的时候需要注意。
+	nginx的ip_hash是基于ip的前三段进行计算的，也就是说ip只有D段不同的两台客户端一定会连接到同一台服务器上，
+这点测试的时候需要注意。
 ```

@@ -15,14 +15,13 @@ server.listen(3000, function (err) {
 let count = 0
 io.on('connection', function(client){
 	count ++
-	console.log('connect: ', count)
-  client.on('login', function(data){
-    console.log('login', client.request.connection.remoteAddress.replace('::ffff:'), data)
+  client.on('login', async data => {
+    // const connection = client.request.connection.remoteAddress.replace('::ffff:', '')
+    // const connection = client.request.connection
+    // console.log(connection)
     client.id = data.id
-  });
-  client.on('queryNanoId', async data => {
-    const doc = await model.findOne({count: data.count})
-  	console.log('queryNanoId', client.id, data.count, doc.nanoid)
+    const doc = await model.findOne({count: data.id})
+    // console.log('login', count, client.id, data.id, doc.nanoid)
     client.emit('resNanoId', doc.nanoid)
   });
   client.on('disconnect', function(){
@@ -32,5 +31,6 @@ io.on('connection', function(client){
 })
 
 app.get('/dbCount', async (req, res) => {
+  console.log(req.headers)
   res.json({count: await model.count()})
 })
